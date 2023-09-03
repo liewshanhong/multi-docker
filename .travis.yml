@@ -10,12 +10,12 @@ script:
   - docker run -e CI=true hongaponga/react-test npm test
 
 after_success:
-  - docker build -t hongaponga/multi-client ./client
-  - docker build -t hongaponga/multi-nginx ./nginx
-  - docker build -t hongaponga/multi-server ./server
-  - docker build -t hongaponga/multi-worker ./worker
+  - docker build -t liewshanhong/multi-client ./client
+  - docker build -t liewshanhong/multi-nginx ./nginx
+  - docker build -t liewshanhong/multi-server ./server
+  - docker build -t liewshanhong/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password=stdin
-  - docker push hongaponga/multi-client
-  - docker push hongaponga/multi-nginx 
-  - docker push hongaponga/multi-server
-  - docker push hongaponga/multi-worker
+  - docker push liewshanhong/multi-client
+  - docker push liewshanhong/multi-nginx 
+  - docker push liewshanhong/multi-server
+  - docker push liewshanhong/multi-worker
