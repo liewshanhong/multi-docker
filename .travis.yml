@@ -1,0 +1,17 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - docker build -t hongaponga/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true hongaponga/react-test npm test
+
+after_success:
+  - docker build -t hongaponga/multi-client ./client
+  - docker build -t hongaponga/multi-nginx ./nginx
+  - docker build -t hongaponga/multi-server ./server
+  - docker build -t hongaponga/multi-worker ./worker
+
